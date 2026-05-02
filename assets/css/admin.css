@@ -1,0 +1,426 @@
+/* Hall Booking System - Admin Styles */
+
+.hbs-admin-wrapper {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Filters */
+.hbs-filters {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    padding: 15px;
+    background: #f5f5f5;
+    border-radius: 4px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-weight: 600;
+    min-width: 80px;
+    color: #333;
+}
+
+.hbs-filter-select,
+.hbs-filter-input {
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    background: white;
+    cursor: pointer;
+}
+
+.hbs-filter-select:focus,
+.hbs-filter-input:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+/* Actions */
+.hbs-actions {
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
+
+.hbs-actions .button {
+    margin-right: 10px;
+}
+
+/* Bookings table */
+#hbs-bookings-table {
+    margin-top: 20px;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#hbs-bookings-table thead {
+    background: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+}
+
+#hbs-bookings-table th {
+    padding: 12px 15px;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+#hbs-bookings-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 14px;
+}
+
+#hbs-bookings-table tbody tr:hover {
+    background: #f9f9f9;
+}
+
+#hbs-bookings-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* Status badges */
+.hbs-booking-status {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 3px;
+    font-weight: 600;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.hbs-booking-status.pending {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.hbs-booking-status.approved {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.hbs-booking-status.rejected {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Action buttons */
+.hbs-booking-actions {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.hbs-booking-actions .button {
+    padding: 4px 10px;
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.hbs-booking-actions .approve-btn {
+    background: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.hbs-booking-actions .approve-btn:hover {
+    background: #218838;
+    border-color: #218838;
+}
+
+.hbs-booking-actions .reject-btn {
+    background: #dc3545;
+    border-color: #dc3545;
+    color: white;
+}
+
+.hbs-booking-actions .reject-btn:hover {
+    background: #c82333;
+    border-color: #c82333;
+}
+
+.hbs-booking-actions .delete-btn {
+    background: #6c757d;
+    border-color: #6c757d;
+    color: white;
+}
+
+.hbs-booking-actions .delete-btn:hover {
+    background: #5a6268;
+    border-color: #5a6268;
+}
+
+/* Modal */
+.hbs-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.hbs-modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    max-width: 600px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.hbs-modal-content h2 {
+    margin-top: 0;
+    color: #2c3e50;
+    margin-bottom: 20px;
+}
+
+.hbs-close-modal {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #999;
+    transition: color 0.2s;
+}
+
+.hbs-close-modal:hover {
+    color: #333;
+}
+
+/* Form styles in modal */
+.hbs-modal-content form {
+    margin-top: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    box-sizing: border-box;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-group input[type="checkbox"] {
+    width: auto !important;
+    height: 18px;
+    width: 18px;
+    margin-right: 10px;
+    cursor: pointer;
+    vertical-align: middle;
+}
+
+.form-group label[for*="booking-recurring"],
+.form-group label[for*="booking-auto-approve"],
+.form-group label[for*="block"] {
+    display: inline;
+    margin: 0;
+    font-weight: normal;
+    margin-left: 0;
+    padding-left: 5px;
+}
+
+.hbs-modal-content .button {
+    margin-top: 10px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.hbs-modal-content .button-primary {
+    width: auto;
+}
+
+/* Settings page */
+.hbs-settings-wrapper {
+    background: white;
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 5px;
+}
+
+.hbs-settings-wrapper h2 {
+    margin-top: 0;
+    color: #2c3e50;
+}
+
+.hbs-hall-card {
+    background: #f9f9f9;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-left: 4px solid #007bff;
+    border-radius: 4px;
+}
+
+.hbs-hall-card h3 {
+    margin: 0 0 8px 0;
+    color: #2c3e50;
+    font-size: 18px;
+}
+
+.hbs-hall-card p {
+    margin: 5px 0;
+    color: #666;
+    font-size: 14px;
+}
+
+.hbs-area-list {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.hbs-area-item {
+    background: white;
+    padding: 10px 12px;
+    margin-bottom: 8px;
+    border-radius: 3px;
+    border-left: 3px solid #ddd;
+    transition: all 0.2s;
+}
+
+.hbs-area-item:hover {
+    border-left-color: #007bff;
+    background: #f0f7ff;
+}
+
+.hbs-area-item strong {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.hbs-area-item p {
+    margin: 0;
+    color: #666;
+    font-size: 13px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hbs-filters {
+        flex-direction: column;
+    }
+    
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    
+    .filter-group label {
+        min-width: auto;
+    }
+    
+    .hbs-filter-select,
+    .hbs-filter-input {
+        width: 100%;
+    }
+    
+    #hbs-bookings-table {
+        font-size: 13px;
+    }
+    
+    #hbs-bookings-table th,
+    #hbs-bookings-table td {
+        padding: 8px 10px;
+    }
+    
+    .hbs-booking-actions {
+        flex-direction: column;
+    }
+    
+    .hbs-booking-actions .button {
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    
+    .form-row {
+        flex-direction: column;
+    }
+    
+    .form-row .form-group {
+        flex: auto;
+    }
+    
+    .hbs-modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrap h1 {
+        font-size: 24px;
+    }
+    
+    #hbs-bookings-table {
+        font-size: 12px;
+        overflow-x: auto;
+    }
+    
+    #hbs-bookings-table th,
+    #hbs-bookings-table td {
+        padding: 6px 8px;
+    }
+    
+    .hbs-booking-status {
+        padding: 2px 6px;
+        font-size: 11px;
+    }
+}

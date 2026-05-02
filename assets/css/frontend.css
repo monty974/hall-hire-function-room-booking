@@ -1,0 +1,443 @@
+/* Hall Booking System - Frontend Styles */
+/* Version 2026.0.11 - Calendar colors fixed */
+/* Booked: Yellow (#fff3cd), Available: Green (#d4edda), Blocked: Gray (#e2e3e5) */
+
+.hbs-booking-form-wrapper {
+    max-width: 700px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.hbs-booking-form {
+    background: #f9f9f9;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hbs-booking-form h2 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+    font-size: 14px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    font-family: inherit;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+}
+
+.form-control option {
+    padding: 8px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.form-row .form-group {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Duration selector */
+.duration-selector {
+    position: relative;
+}
+
+.duration-presets {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.duration-btn {
+    padding: 8px 14px;
+    background: #e9ecef;
+    border: 2px solid #dee2e6;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 13px;
+    transition: all 0.2s;
+}
+
+.duration-btn:hover {
+    background: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+/* Recurring options */
+.recurring-options {
+    background: #e7f3ff;
+    border-left: 4px solid #007bff;
+    padding: 15px;
+    border-radius: 4px;
+    margin-top: 15px;
+}
+
+.recurring-options .form-row {
+    gap: 15px;
+}
+
+/* Form checkbox */
+.form-group input[type="checkbox"] {
+    margin-right: 8px;
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.form-group label input[type="checkbox"] {
+    display: inline-block;
+    margin-bottom: 0;
+    margin-right: 8px;
+}
+
+/* Buttons */
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: #007bff;
+    color: white;
+    width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+    background: #0056b3;
+    box-shadow: 0 2px 8px rgba(0, 123, 255, 0.3);
+}
+
+.btn-primary:disabled {
+    background: #6c757d;
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+.btn-sm {
+    padding: 6px 12px;
+    font-size: 12px;
+}
+
+/* Form status */
+.form-status {
+    display: inline-block;
+    margin-left: 15px;
+    padding: 10px 15px;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.form-status.success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.form-status.error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Success message */
+.alert {
+    padding: 15px 20px;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    border-left: 4px solid;
+}
+
+.alert h4 {
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.alert p {
+    margin: 0;
+    line-height: 1.6;
+}
+
+.alert-success {
+    background: #d4edda;
+    color: #155724;
+    border-left-color: #28a745;
+}
+
+.alert-success h4 {
+    color: #0c5460;
+}
+
+/* Calendar */
+.hbs-calendar-wrapper {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.hbs-calendar-controls {
+    text-align: center;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.current-month {
+    display: inline-block;
+    min-width: 250px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-sm:hover {
+    background: #0056b3;
+}
+
+/* Calendar grid */
+.hbs-calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    margin-bottom: 30px;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.hbs-calendar-day {
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    background: white;
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    padding: 5px;
+    transition: all 0.2s;
+}
+
+.hbs-calendar-day.header {
+    border: none;
+    background: #f0f0f0;
+    color: #666;
+    font-size: 12px;
+    padding-bottom: 8px;
+    margin-bottom: 5px;
+}
+
+.hbs-calendar-day.other-month {
+    background: #f5f5f5;
+    color: #999;
+    border-color: #e9ecef;
+}
+
+.hbs-calendar-day.available {
+    background: #d4edda;
+    border-color: #28a745;
+    cursor: pointer;
+}
+
+.hbs-calendar-day.available:hover {
+    background: #c3e6cb;
+    box-shadow: 0 2px 8px rgba(40, 167, 69, 0.3);
+}
+
+.hbs-calendar-day.booked {
+    background: #fff3cd;
+    border-color: #ffc107;
+    cursor: not-allowed;
+    color: #856404;
+}
+
+.hbs-calendar-day.blocked {
+    background: #e2e3e5;
+    border-color: #6c757d;
+    cursor: not-allowed;
+    color: #383d41;
+}
+
+.hbs-calendar-day.fully-booked {
+    background: #f8d7da;
+    border-color: #f5c6cb;
+    cursor: not-allowed;
+    color: #721c24;
+}
+
+.hbs-calendar-day.closed {
+    background: #d3d3d3;
+    border-color: #999;
+    cursor: not-allowed;
+    color: #666;
+    opacity: 0.6;
+}
+
+.hbs-calendar-day.today {
+    border: 2px solid #007bff;
+    font-weight: bold;
+}
+
+/* Legend */
+.hbs-legend {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    margin: 20px 0;
+    flex-wrap: wrap;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+}
+
+.legend-color {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    border: 2px solid;
+}
+
+.legend-color.available {
+    background: #d4edda;
+    border-color: #28a745;
+}
+
+.legend-color.booked {
+    background: #fff3cd;
+    border-color: #ffc107;
+}
+
+.legend-color.blocked {
+    background: #e2e3e5;
+    border-color: #6c757d;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    
+    .form-row .form-group {
+        min-width: auto;
+    }
+    
+    .hbs-calendar {
+        gap: 4px;
+        padding: 10px;
+    }
+    
+    .hbs-calendar-day {
+        font-size: 12px;
+        aspect-ratio: auto;
+        min-height: 50px;
+    }
+    
+    .hbs-calendar-controls {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .current-month {
+        min-width: 200px;
+    }
+    
+    .hbs-legend {
+        gap: 15px;
+    }
+    
+    .duration-presets {
+        gap: 8px;
+    }
+    
+    .duration-btn {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hbs-booking-form {
+        padding: 20px;
+    }
+    
+    .hbs-booking-form h2 {
+        font-size: 22px;
+        margin-bottom: 20px;
+    }
+    
+    .form-group {
+        margin-bottom: 15px;
+    }
+    
+    .btn {
+        padding: 10px 16px;
+    }
+    
+    .duration-presets {
+        flex-direction: column;
+    }
+    
+    .duration-btn {
+        width: 100%;
+        text-align: center;
+    }
+}
