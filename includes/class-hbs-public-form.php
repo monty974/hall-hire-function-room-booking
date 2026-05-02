@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Hall Booking System - Public Form & Calendar
  */
@@ -26,7 +29,7 @@ class HBS_Public_Form {
     public function enqueue_frontend_scripts() {
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-ui-datepicker');
-        wp_enqueue_style('jquery-ui-datepicker', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+        
         
         wp_enqueue_style('hbs-frontend', HBS_PLUGIN_URL . 'assets/css/frontend.css', [], HBS_VERSION);
         wp_enqueue_script('hbs-frontend', HBS_PLUGIN_URL . 'assets/js/frontend.js', ['jquery'], HBS_VERSION, true);
@@ -417,7 +420,7 @@ class HBS_Public_Form {
     public function render_availability_calendar($atts) {
         $atts = shortcode_atts([
             'area_id' => 1,
-            'month' => date('Y-m'),
+            'month' => gmdate('Y-m'),
         ], $atts);
         
         ob_start();
@@ -494,7 +497,7 @@ class HBS_Public_Form {
     private function render_area_options() {
         $areas = HBS_Database::get_areas();
         foreach ($areas as $area) {
-            echo '<option value="' . $area->id . '">' . esc_html($area->name) . '</option>';
+            echo '<option value="' . esc_attr($area->id) . '">' . esc_html($area->name) . '</option>';
         }
     }
     

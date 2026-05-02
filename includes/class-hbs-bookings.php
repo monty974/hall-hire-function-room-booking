@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Hall Booking System - Booking Management
  */
@@ -39,8 +42,8 @@ class HBS_Bookings {
     public function ajax_get_availability() {
         check_ajax_referer('hbs_nonce', 'nonce');
 
-        $area_id = intval($_POST['area_id'] ?? 0);
-        $month = sanitize_text_field($_POST['month'] ?? date('Y-m'));
+        $area_id = intval( $_POST['area_id'] ?? 0 );
+        $month = sanitize_text_field( wp_unslash( $_POST['month'] ?? gmdate('Y-m') ) );
 
         if (!$area_id) {
             wp_send_json_error('Missing area ID');
@@ -60,18 +63,18 @@ class HBS_Bookings {
             wp_send_json_error('Security check failed');
         }
 
-        $area_id = intval($_POST['area_id'] ?? 0);
-        $booking_date = sanitize_text_field($_POST['booking_date'] ?? '');
-        $start_time = sanitize_text_field($_POST['start_time'] ?? '09:00');
+        $area_id = intval( $_POST['area_id'] ?? 0 );
+        $booking_date = sanitize_text_field( wp_unslash( $_POST['booking_date'] ?? '' ) );
+        $start_time = sanitize_text_field( wp_unslash( $_POST['start_time'] ?? '09:00' ) );
         $duration_hours = floatval($_POST['duration_hours'] ?? 1);
-        $renter_name = sanitize_text_field($_POST['renter_name'] ?? '');
-        $renter_email = sanitize_email($_POST['renter_email'] ?? '');
-        $renter_phone = sanitize_text_field($_POST['renter_phone'] ?? '');
-        $event_type = sanitize_text_field($_POST['event_type'] ?? '');
+        $renter_name = sanitize_text_field( wp_unslash( $_POST['renter_name'] ?? '' ) );
+        $renter_email = sanitize_email( wp_unslash( $_POST['renter_email'] ?? '' ) );
+        $renter_phone = sanitize_text_field( wp_unslash( $_POST['renter_phone'] ?? '' ) );
+        $event_type = sanitize_text_field( wp_unslash( $_POST['event_type'] ?? '' ) );
         $event_details = sanitize_textarea_field($_POST['event_details'] ?? '');
         $is_recurring = isset($_POST['is_recurring']) ? 1 : 0;
-        $recurrence_type = sanitize_text_field($_POST['recurrence_type'] ?? '');
-        $recurrence_until = sanitize_text_field($_POST['recurrence_until'] ?? '');
+        $recurrence_type = sanitize_text_field( wp_unslash( $_POST['recurrence_type'] ?? '' ) );
+        $recurrence_until = sanitize_text_field( wp_unslash( $_POST['recurrence_until'] ?? '' ) );
 
         // Validation
         if (!$area_id || !$booking_date || !$renter_name || !$renter_email) {
@@ -129,13 +132,13 @@ class HBS_Bookings {
         }
         check_ajax_referer('hbs_admin_nonce', 'nonce');
 
-        $booking_id = intval($_POST['booking_id'] ?? 0);
+        $booking_id = intval( $_POST['booking_id'] ?? 0 );
         if (!$booking_id) {
             wp_send_json_error('Invalid booking');
         }
 
         global $wpdb;
-        $updated = $wpdb->update(
+        $updated = $wpdb->upgmdate(
             $wpdb->prefix . 'hbs_bookings',
             ['status' => 'approved'],
             ['id' => $booking_id]
@@ -158,13 +161,13 @@ class HBS_Bookings {
         }
         check_ajax_referer('hbs_admin_nonce', 'nonce');
 
-        $booking_id = intval($_POST['booking_id'] ?? 0);
+        $booking_id = intval( $_POST['booking_id'] ?? 0 );
         if (!$booking_id) {
             wp_send_json_error('Invalid booking');
         }
 
         global $wpdb;
-        $updated = $wpdb->update(
+        $updated = $wpdb->upgmdate(
             $wpdb->prefix . 'hbs_bookings',
             ['status' => 'rejected'],
             ['id' => $booking_id]
@@ -187,7 +190,7 @@ class HBS_Bookings {
         }
         check_ajax_referer('hbs_admin_nonce', 'nonce');
 
-        $booking_id = intval($_POST['booking_id'] ?? 0);
+        $booking_id = intval( $_POST['booking_id'] ?? 0 );
         if (!$booking_id) {
             wp_send_json_error('Invalid booking');
         }
@@ -219,11 +222,11 @@ class HBS_Bookings {
         }
         check_ajax_referer('hbs_admin_nonce', 'nonce');
 
-        $area_id = intval($_POST['area_id'] ?? 0);
-        $block_date = sanitize_text_field($_POST['block_date'] ?? '');
-        $start_time = sanitize_text_field($_POST['start_time'] ?? '00:00');
-        $end_time = sanitize_text_field($_POST['end_time'] ?? '23:59');
-        $reason = sanitize_text_field($_POST['reason'] ?? 'Internal use');
+        $area_id = intval( $_POST['area_id'] ?? 0 );
+        $block_date = sanitize_text_field( wp_unslash( $_POST['block_date'] ?? '' ) );
+        $start_time = sanitize_text_field( wp_unslash( $_POST['start_time'] ?? '00:00' ) );
+        $end_time = sanitize_text_field( wp_unslash( $_POST['end_time'] ?? '23:59' ) );
+        $reason = sanitize_text_field( wp_unslash( $_POST['reason'] ?? 'Internal use' ) );
 
         if (!$area_id || !$block_date) {
             wp_send_json_error('Missing parameters');
@@ -269,9 +272,9 @@ class HBS_Bookings {
         }
         check_ajax_referer('hbs_admin_nonce', 'nonce');
 
-        $area_id = intval($_POST['area_id'] ?? 0);
-        $status = sanitize_text_field($_POST['status'] ?? '');
-        $month = sanitize_text_field($_POST['month'] ?? date('Y-m'));
+        $area_id = intval( $_POST['area_id'] ?? 0 );
+        $status = sanitize_text_field( wp_unslash( $_POST['status'] ?? '' ) );
+        $month = sanitize_text_field( wp_unslash( $_POST['month'] ?? gmdate('Y-m') ) );
 
         // Get regular bookings with status filter
         $bookings = $this->get_bookings($area_id, $status, $month);
@@ -650,7 +653,7 @@ class HBS_Bookings {
             return $wpdb->get_results($wpdb->prepare($query, $params));
         }
 
-        return $wpdb->get_results($query);
+        return $wpdb->get_results($wpdb->prepare($query));
     }
     
     /**
@@ -678,7 +681,7 @@ class HBS_Bookings {
             return $wpdb->get_results($wpdb->prepare($query, $params));
         }
 
-        return $wpdb->get_results($query);
+        return $wpdb->get_results($wpdb->prepare($query));
     }
     
     /**
@@ -694,9 +697,9 @@ class HBS_Bookings {
             wp_send_json_error('Security check failed');
         }
         
-        $area_name = sanitize_text_field($_POST['area_name'] ?? '');
+        $area_name = sanitize_text_field( wp_unslash( $_POST['area_name'] ?? '' ) );
         $area_description = sanitize_textarea_field($_POST['area_description'] ?? '');
-        $area_capacity = intval($_POST['area_capacity'] ?? 0);
+        $area_capacity = intval( $_POST['area_capacity'] ?? 0 );
         
         if (!$area_name) {
             wp_send_json_error('Area name is required');
@@ -733,17 +736,17 @@ class HBS_Bookings {
             wp_send_json_error('Security check failed');
         }
         
-        $area_id = intval($_POST['area_id'] ?? 0);
-        $area_name = sanitize_text_field($_POST['area_name'] ?? '');
+        $area_id = intval( $_POST['area_id'] ?? 0 );
+        $area_name = sanitize_text_field( wp_unslash( $_POST['area_name'] ?? '' ) );
         $area_description = sanitize_textarea_field($_POST['area_description'] ?? '');
-        $area_capacity = intval($_POST['area_capacity'] ?? 0);
+        $area_capacity = intval( $_POST['area_capacity'] ?? 0 );
         
         if (!$area_id || !$area_name) {
             wp_send_json_error('Area ID and name are required');
         }
         
         global $wpdb;
-        $updated = $wpdb->update(
+        $updated = $wpdb->upgmdate(
             $wpdb->prefix . 'hbs_areas',
             [
                 'name' => $area_name,
@@ -773,7 +776,7 @@ class HBS_Bookings {
             wp_send_json_error('Security check failed');
         }
         
-        $area_id = intval($_POST['area_id'] ?? 0);
+        $area_id = intval( $_POST['area_id'] ?? 0 );
         
         if (!$area_id) {
             wp_send_json_error('Area ID is required');
@@ -809,8 +812,8 @@ class HBS_Bookings {
     public function ajax_debug_calendar() {
         check_ajax_referer('hbs_nonce', 'nonce');
         
-        $area_id = intval($_POST['area_id'] ?? 1);
-        $month = sanitize_text_field($_POST['month'] ?? date('Y-m'));
+        $area_id = intval( $_POST['area_id'] ?? 1 );
+        $month = sanitize_text_field( wp_unslash( $_POST['month'] ?? gmdate('Y-m') ) );
         
         global $wpdb;
         
@@ -850,15 +853,15 @@ class HBS_Bookings {
             wp_send_json_error('Security check failed');
         }
         
-        $booking_id = intval($_POST['booking_id'] ?? 0);
-        $renter_name = sanitize_text_field($_POST['renter_name'] ?? '');
-        $renter_email = sanitize_email($_POST['renter_email'] ?? '');
-        $renter_phone = sanitize_text_field($_POST['renter_phone'] ?? '');
-        $start_date = sanitize_text_field($_POST['start_date'] ?? '');
-        $start_time = sanitize_text_field($_POST['start_time'] ?? '');
-        $end_date = sanitize_text_field($_POST['end_date'] ?? '');
-        $end_time = sanitize_text_field($_POST['end_time'] ?? '');
-        $event_type = sanitize_text_field($_POST['event_type'] ?? '');
+        $booking_id = intval( $_POST['booking_id'] ?? 0 );
+        $renter_name = sanitize_text_field( wp_unslash( $_POST['renter_name'] ?? '' ) );
+        $renter_email = sanitize_email( wp_unslash( $_POST['renter_email'] ?? '' ) );
+        $renter_phone = sanitize_text_field( wp_unslash( $_POST['renter_phone'] ?? '' ) );
+        $start_date = sanitize_text_field( wp_unslash( $_POST['start_date'] ?? '' ) );
+        $start_time = sanitize_text_field( wp_unslash( $_POST['start_time'] ?? '' ) );
+        $end_date = sanitize_text_field( wp_unslash( $_POST['end_date'] ?? '' ) );
+        $end_time = sanitize_text_field( wp_unslash( $_POST['end_time'] ?? '' ) );
+        $event_type = sanitize_text_field( wp_unslash( $_POST['event_type'] ?? '' ) );
         $event_details = sanitize_textarea_field($_POST['event_details'] ?? '');
         
         if (!$booking_id || !$renter_name || !$renter_email) {
@@ -867,7 +870,7 @@ class HBS_Bookings {
         
         global $wpdb;
         
-        $updated = $wpdb->update(
+        $updated = $wpdb->upgmdate(
             $wpdb->prefix . 'hbs_bookings',
             [
                 'renter_name' => $renter_name,
@@ -895,7 +898,7 @@ class HBS_Bookings {
      */
     public function ajax_save_default_area() {
         // Verify nonce
-        if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'hbs_admin_nonce')) {
+        if (!isset($_POST['nonce']) || !wp_verify_nonce( wp_unslash( $_POST['nonce'] ), 'hbs_admin_nonce')) {
             wp_send_json_error('Security check failed');
         }
         
@@ -903,7 +906,7 @@ class HBS_Bookings {
             wp_send_json_error('Unauthorized');
         }
         
-        $area_id = intval($_POST['area_id'] ?? 0);
+        $area_id = intval( $_POST['area_id'] ?? 0 );
         
         if (!$area_id) {
             wp_send_json_error('Invalid area ID');
@@ -928,10 +931,10 @@ class HBS_Bookings {
             wp_send_json_error('Unauthorized');
         }
         
-        $day = intval($_POST['day_of_week'] ?? -1);
-        $is_open = intval($_POST['is_open'] ?? 0);
-        $start_time = sanitize_text_field($_POST['start_time'] ?? '09:00');
-        $end_time = sanitize_text_field($_POST['end_time'] ?? '17:00');
+        $day = intval( $_POST['day_of_week'] ?? -1 );
+        $is_open = intval( $_POST['is_open'] ?? 0 );
+        $start_time = sanitize_text_field( wp_unslash( $_POST['start_time'] ?? '09:00' ) );
+        $end_time = sanitize_text_field( wp_unslash( $_POST['end_time'] ?? '17:00' ) );
         
         if ($day < 0 || $day > 6) {
             wp_send_json_error('Invalid day of week');

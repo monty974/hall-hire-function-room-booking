@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Hall Booking System - Admin Interface
  */
@@ -74,7 +77,7 @@ class HBS_Admin {
         
         wp_enqueue_script('jquery');
         wp_enqueue_script('jquery-ui-datepicker');
-        wp_enqueue_style('jquery-ui-datepicker', 'https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css');
+        
         
         wp_enqueue_style('hbs-admin', HBS_PLUGIN_URL . 'assets/css/admin.css', [], HBS_VERSION);
         wp_enqueue_script('hbs-admin', HBS_PLUGIN_URL . 'assets/js/admin.js', ['jquery'], HBS_VERSION, true);
@@ -126,7 +129,7 @@ class HBS_Admin {
                     
                     <div class="filter-group" id="custom-month-group" style="display:none;">
                         <label for="admin-month-filter">Select Month:</label>
-                        <input type="month" id="admin-month-filter" class="hbs-filter-input" value="<?php echo date('Y-m'); ?>">
+                        <input type="month" id="admin-month-filter" class="hbs-filter-input" value="<?php echo esc_attr(gmdate('Y-m')); ?>">
                     </div>
                     
                     <button id="hbs-refresh-btn" class="button button-primary">Refresh</button>
@@ -507,7 +510,7 @@ class HBS_Admin {
                                     $default_id = HBS_Database::get_default_area();
                                     foreach ($areas as $area) {
                                         $selected = $area->id == $default_id ? 'selected' : '';
-                                        echo '<option value="' . $area->id . '" ' . $selected . '>' . esc_html($area->name) . '</option>';
+                                        echo '<option value="' . esc_attr($area->id) . '" ' . esc_attr($selected) . '>' . esc_html($area->name) . '</option>';
                                     }
                                     ?>
                                 </select>
@@ -732,11 +735,11 @@ class HBS_Admin {
             echo '<td>';
             echo '<div class="area-action-buttons">';
             echo '<button class="button button-small hbs-edit-area-btn" 
-                    data-area-id="' . $area->id . '" 
+                    data-area-id="' . esc_attr($area->id) . '" 
                     data-area-name="' . esc_attr($area->name) . '" 
                     data-area-desc="' . esc_attr($area->description) . '" 
                     data-area-capacity="' . ($area->capacity ? esc_attr($area->capacity) : '') . '">Edit</button>';
-            echo '<button class="button button-small hbs-delete-area-btn" data-area-id="' . $area->id . '" style="background: #dc3545; color: white;">Delete</button>';
+            echo '<button class="button button-small hbs-delete-area-btn" data-area-id="' . esc_attr($area->id) . '" style="background: #dc3545; color: white;">Delete</button>';
             echo '</div>';
             echo '</td>';
             echo '</tr>';
@@ -749,7 +752,7 @@ class HBS_Admin {
     private function render_area_filter_options() {
         $areas = HBS_Database::get_areas();
         foreach ($areas as $area) {
-            echo '<option value="' . $area->id . '">' . esc_html($area->name) . '</option>';
+            echo '<option value="' . esc_attr($area->id) . '">' . esc_html($area->name) . '</option>';
         }
     }
     
@@ -769,14 +772,14 @@ class HBS_Admin {
             echo '<tr>';
             echo '<td><strong>' . esc_html($day_name) . '</strong></td>';
             echo '<td>';
-            echo '<select class="hours-open-select" data-day="' . $day_num . '" style="padding: 5px; border: 1px solid #ddd;">';
+            echo '<select class="hours-open-select" data-day="' . esc_attr($day_num) . '" style="padding: 5px; border: 1px solid #ddd;">';
             echo '<option value="0"' . ($is_open == 0 ? ' selected' : '') . '>Closed</option>';
             echo '<option value="1"' . ($is_open == 1 ? ' selected' : '') . '>Open</option>';
             echo '</select>';
             echo '</td>';
-            echo '<td><input type="time" class="hours-start-time" data-day="' . $day_num . '" value="' . esc_attr($start_time) . '" style="padding: 5px; border: 1px solid #ddd; width: 100%;"></td>';
-            echo '<td><input type="time" class="hours-end-time" data-day="' . $day_num . '" value="' . esc_attr($end_time) . '" style="padding: 5px; border: 1px solid #ddd; width: 100%;"></td>';
-            echo '<td><button type="button" class="button button-primary hbs-save-hours-btn" data-day="' . $day_num . '" style="background-color: #0073aa; color: white; padding: 6px 12px; font-weight: 600;">Save</button></td>';
+            echo '<td><input type="time" class="hours-start-time" data-day="' . esc_attr($day_num) . '" value="' . esc_attr($start_time) . '" style="padding: 5px; border: 1px solid #ddd; width: 100%;"></td>';
+            echo '<td><input type="time" class="hours-end-time" data-day="' . esc_attr($day_num) . '" value="' . esc_attr($end_time) . '" style="padding: 5px; border: 1px solid #ddd; width: 100%;"></td>';
+            echo '<td><button type="button" class="button button-primary hbs-save-hours-btn" data-day="' . esc_attr($day_num) . '" style="background-color: #0073aa; color: white; padding: 6px 12px; font-weight: 600;">Save</button></td>';
             echo '</tr>';
         }
     }

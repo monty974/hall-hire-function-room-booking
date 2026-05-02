@@ -5,8 +5,8 @@ class HBS_Post_Types {
 	public function register_post_types() {
 		// Hall post type
 		register_post_type( 'hbs_hall', array(
-			'label'               => __( 'Halls', 'hall-booking-system' ),
-			'singular_name'       => __( 'Hall', 'hall-booking-system' ),
+			'label'               => __( 'Halls', 'hall-hire-function-room-booking' ),
+			'singular_name'       => __( 'Hall', 'hall-hire-function-room-booking' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
@@ -20,8 +20,8 @@ class HBS_Post_Types {
 
 		// Bookable area post type
 		register_post_type( 'hbs_area', array(
-			'label'               => __( 'Bookable Areas', 'hall-booking-system' ),
-			'singular_name'       => __( 'Bookable Area', 'hall-booking-system' ),
+			'label'               => __( 'Bookable Areas', 'hall-hire-function-room-booking' ),
+			'singular_name'       => __( 'Bookable Area', 'hall-hire-function-room-booking' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => 'edit.php?post_type=hbs_hall',
@@ -34,8 +34,8 @@ class HBS_Post_Types {
 
 		// Booking request post type
 		register_post_type( 'hbs_booking', array(
-			'label'               => __( 'Booking Requests', 'hall-booking-system' ),
-			'singular_name'       => __( 'Booking Request', 'hall-booking-system' ),
+			'label'               => __( 'Booking Requests', 'hall-hire-function-room-booking' ),
+			'singular_name'       => __( 'Booking Request', 'hall-hire-function-room-booking' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => 'edit.php?post_type=hbs_hall',
@@ -48,8 +48,8 @@ class HBS_Post_Types {
 
 		// Blocked period post type
 		register_post_type( 'hbs_blocked', array(
-			'label'               => __( 'Blocked Periods', 'hall-booking-system' ),
-			'singular_name'       => __( 'Blocked Period', 'hall-booking-system' ),
+			'label'               => __( 'Blocked Periods', 'hall-hire-function-room-booking' ),
+			'singular_name'       => __( 'Blocked Period', 'hall-hire-function-room-booking' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => 'edit.php?post_type=hbs_hall',
@@ -64,7 +64,7 @@ class HBS_Post_Types {
 	public function register_taxonomies() {
 		// Booking status taxonomy
 		register_taxonomy( 'hbs_booking_status', 'hbs_booking', array(
-			'label'             => __( 'Booking Status', 'hall-booking-system' ),
+			'label'             => __( 'Booking Status', 'hall-hire-function-room-booking' ),
 			'public'            => false,
 			'show_ui'           => true,
 			'hierarchical'      => false,

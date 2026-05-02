@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 class HBS_Frontend {
 
@@ -15,8 +18,8 @@ class HBS_Frontend {
 			) );
 
 			// Enqueue calendar library
-			wp_enqueue_script( 'fullcalendar', 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.min.js', array(), '6.1.10' );
-			wp_enqueue_style( 'fullcalendar', 'https://cdn.jsdelivr.net/npm/fullcalendar@6.1.10/index.global.css', array(), '6.1.10' );
+			
+			
 		}
 	}
 

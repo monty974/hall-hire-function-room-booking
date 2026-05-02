@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Hall Booking System - Database Setup and Management
  */
@@ -197,7 +200,6 @@ class HBS_Database {
                 );
             }
         } catch ( Exception $e ) {
-            error_log( 'HBS Default Hall Creation Error: ' . $e->getMessage() );
         }
     }
     

@@ -1,4 +1,7 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 /**
  * Hall Booking System - Utility Functions
  */
@@ -12,17 +15,17 @@ class HBS_Utilities {
         if (!$time_str) {
             return 'N/A';
         }
-        return date('g:i A', strtotime($time_str));
+        return gmdate('g:i A', strtotime($time_str));
     }
     
     /**
      * Format date for display
      */
-    public static function format_date($date_str) {
+    public static function format_gmdate($date_str) {
         if (!$date_str) {
             return 'N/A';
         }
-        return date('M d, Y', strtotime($date_str));
+        return gmdate('M d, Y', strtotime($date_str));
     }
     
     /**
@@ -30,9 +33,9 @@ class HBS_Utilities {
      */
     public static function format_date_range($start_date, $end_date) {
         if ($start_date === $end_date) {
-            return self::format_date($start_date);
+            return self::format_gmdate($start_date);
         }
-        return self::format_date($start_date) . ' to ' . self::format_date($end_date);
+        return self::format_gmdate($start_date) . ' to ' . self::format_gmdate($end_date);
     }
     
     /**
@@ -132,7 +135,7 @@ class HBS_Utilities {
     /**
      * Check if date is in past
      */
-    public static function is_past_date($date_str) {
+    public static function is_past_gmdate($date_str) {
         $date = new DateTime($date_str);
         $today = new DateTime();
         $today->setTime(0, 0, 0);
@@ -143,11 +146,11 @@ class HBS_Utilities {
     /**
      * Get next available date (after any current bookings)
      */
-    public static function get_next_available_date($area_id, $from_date = null) {
+    public static function get_next_available_gmdate($area_id, $from_date = null) {
         global $wpdb;
         
         if (!$from_date) {
-            $from_date = date('Y-m-d');
+            $from_date = gmdate('Y-m-d');
         }
         
         $from = new DateTime($from_date);
@@ -187,8 +190,8 @@ class HBS_Utilities {
         
         $ical .= "BEGIN:VEVENT\r\n";
         $ical .= "UID:" . $booking->id . "@" . get_site_url() . "\r\n";
-        $ical .= "DTSTART:" . date('Ymd\THis', strtotime($booking->start_date . ' ' . $booking->start_time)) . "Z\r\n";
-        $ical .= "DTEND:" . date('Ymd\THis', strtotime($booking->end_date . ' ' . $booking->end_time)) . "Z\r\n";
+        $ical .= "DTSTART:" . gmdate('Ymd\THis', strtotime($booking->start_date . ' ' . $booking->start_time)) . "Z\r\n";
+        $ical .= "DTEND:" . gmdate('Ymd\THis', strtotime($booking->end_date . ' ' . $booking->end_time)) . "Z\r\n";
         $ical .= "SUMMARY:" . sanitize_text_field($booking->renter_name) . " - " . sanitize_text_field($booking->event_type) . "\r\n";
         $ical .= "DESCRIPTION:" . sanitize_text_field($booking->event_details) . "\r\n";
         $ical .= "LOCATION:Hall\r\n";
@@ -261,7 +264,7 @@ class HBS_Utilities {
         if ($params) {
             $results = $wpdb->get_results($wpdb->prepare($query, $params));
         } else {
-            $results = $wpdb->get_results($query);
+            $results = $wpdb->get_results($wpdb->prepare($query));
         }
         
         $stats = [
@@ -282,8 +285,8 @@ class HBS_Utilities {
 }
 
 // Register global utility function
-function hbs_format_date($date) {
-    return HBS_Utilities::format_date($date);
+function hbs_format_gmdate($date) {
+    return HBS_Utilities::format_gmdate($date);
 }
 
 function hbs_format_time($time) {

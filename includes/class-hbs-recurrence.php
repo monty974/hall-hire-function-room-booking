@@ -24,7 +24,7 @@ class HBS_Recurrence {
 			}
 
 			$dates[] = $current->format( 'Y-m-d' );
-			$current = self::advance_date( $current, $components );
+			$current = self::advance_gmdate( $current, $components );
 			$count++;
 		}
 
@@ -49,7 +49,7 @@ class HBS_Recurrence {
 	/**
 	 * Advance date based on frequency
 	 */
-	private static function advance_date( DateTime $current, $components ) {
+	private static function advance_gmdate( DateTime $current, $components ) {
 		$freq = isset( $components['freq'] ) ? $components['freq'] : 'WEEKLY';
 		$interval = isset( $components['interval'] ) ? intval( $components['interval'] ) : 1;
 
@@ -110,7 +110,7 @@ class HBS_Recurrence {
 		}
 
 		if ( $until ) {
-			$rrule .= ';UNTIL=' . gmdate( 'Ymd', strtotime( $until ) );
+			$rrule .= ';UNTIL=' . gmgmdate( 'Ymd', strtotime( $until ) );
 		}
 
 		return $rrule;

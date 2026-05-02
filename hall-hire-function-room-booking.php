@@ -2,10 +2,10 @@
 /**
  * Plugin Name: Hall hire and function room booking system
  * Description: A flexible booking system for managing hall and function room rentals with approval workflow, recurring bookings, and email notifications
- * Version: 2026.1.1
+ * Version: 2026.1.2
  * Author: Nick La Galle
  * License: GPL v2 or later
- * Text Domain: hall-hire-function-room-booking
+ * Text Domain: hall-hire-and-function-room-booking-system
  * Domain Path: /languages
  * 
  * BUILD VERIFICATION: 2026.0.12-FINAL
@@ -25,7 +25,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 // Define plugin constants
 define( 'HBS_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'HBS_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
-define( 'HBS_VERSION', '2026.1.1' );
+define( 'HBS_VERSION', '2026.1.2' );
 
 // Include required files
 require_once HBS_PLUGIN_DIR . 'includes/class-hbs-utilities.php';
@@ -74,16 +74,24 @@ class Hall_Booking_System {
 			HBS_Setup_Wizard::get_instance();
 		} catch ( Exception $e ) {
 			// Log the error but don't crash
-			error_log( 'HBS Initialization Error: ' . $e->getMessage() );
 		}
 	}
 
 	public function activate() {
+		// Ensure database class is available
+		if (!class_exists('HBS_Database')) {
+			wp_die('HBS_Database class not found. Please contact support.');
+		}
+		
 		// Create database tables
 		try {
-			HBS_Database::get_instance()->create_tables();
+			$db = HBS_Database::get_instance();
+			if (method_exists($db, 'create_tables')) {
+				$db->create_tables();
+			}
 		} catch ( Exception $e ) {
-			wp_die( 'Database setup failed: ' . $e->getMessage() );
+			error_log('HBS Activation Error: ' . $e->getMessage());
+			wp_die( esc_html( 'Database setup failed. Please check error logs.' ) );
 		}
 		
 		// Flush rewrite rules

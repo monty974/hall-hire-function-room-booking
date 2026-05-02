@@ -32,7 +32,7 @@ class HBS_Setup_Wizard {
     public function render_setup_page() {
         // Check if user has admin capability
         if (!current_user_can('manage_options')) {
-            wp_die(__('You do not have permission to access this page.', 'hall-booking-system'));
+            wp_die(esc_html__('You do not have permission to access this page.', 'hall-hire-function-room-booking'));
         }
         
         ?>
@@ -86,13 +86,13 @@ class HBS_Setup_Wizard {
                 <div style="margin-top: 40px; padding: 20px; background: #f9f9f9; border-radius: 4px;">
                     <h3>Quick Links</h3>
                     <p>
-                        <a href="<?php echo admin_url('admin.php?page=hbs-bookings'); ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">
+                        <a href="<?php echo esc_url(admin_url('admin.php?page=hbs-bookings')); ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">
                             → Manage Bookings
                         </a>
-                        <a href="<?php echo admin_url('admin.php?page=hbs-settings'); ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">
+                        <a href="<?php echo esc_url(admin_url('admin.php?page=hbs-settings')); ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px; margin-right: 10px;">
                             → Hall Settings
                         </a>
-                        <a href="<?php echo admin_url('edit.php?post_type=page'); ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">
+                        <a href="<?php echo esc_url(admin_url('edit.php?post_type=page')); ?>" style="display: inline-block; padding: 10px 20px; background: #007bff; color: white; text-decoration: none; border-radius: 4px;">
                             → Create Pages
                         </a>
                     </p>
@@ -135,7 +135,7 @@ class HBS_Setup_Wizard {
             <p>You can customize these settings anytime after setup is complete.</p>
             
             <div class="setup-buttons">
-                <a href="<?php echo admin_url('admin.php?page=hbs-setup&step=2'); ?>" class="button button-primary button-next">Start Setup →</a>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=hbs-setup&step=2')); ?>" class="button button-primary button-next">Start Setup →</a>
             </div>
         </div>
         <?php
@@ -153,7 +153,7 @@ class HBS_Setup_Wizard {
             <h2>Configure Your Hall</h2>
             <p>Your main hall has been created. Review and update the details below:</p>
             
-            <form method="post" action="<?php echo admin_url('admin-ajax.php'); ?>">
+            <form method="post" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
                 <input type="hidden" name="action" value="hbs_setup_update_hall">
                 <?php wp_nonce_field('hbs_setup_nonce'); ?>
                 
@@ -168,7 +168,7 @@ class HBS_Setup_Wizard {
                 </div>
                 
                 <div class="setup-buttons">
-                    <a href="<?php echo admin_url('admin.php?page=hbs-setup&step=1'); ?>" class="button button-skip">← Back</a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=hbs-setup&step=1')); ?>" class="button button-skip">← Back</a>
                     <button type="submit" class="button button-primary button-next">Next: Areas →</button>
                 </div>
             </form>
@@ -188,28 +188,28 @@ class HBS_Setup_Wizard {
             <h2>Configure Bookable Areas</h2>
             <p>Set up the two areas within your hall. Each area will have its own availability calendar and booking management.</p>
             
-            <form method="post" action="<?php echo admin_url('admin-ajax.php'); ?>">
+            <form method="post" action="<?php echo esc_url(admin_url('admin-ajax.php')); ?>">
                 <input type="hidden" name="action" value="hbs_setup_update_areas">
                 <?php wp_nonce_field('hbs_setup_nonce'); ?>
                 
                 <?php for ($i = 1; $i <= 2; $i++): ?>
                     <?php $area = isset($areas[$i-1]) ? $areas[$i-1] : null; ?>
                     <div class="area-item">
-                        <strong>Area <?php echo $i; ?></strong>
+                        <strong>Area <?php echo esc_html($i); ?></strong>
                         
                         <label>Area Name:</label>
-                        <input type="text" name="area_name_<?php echo $i; ?>" value="<?php echo $area ? esc_attr($area->name) : 'Area ' . $i; ?>" placeholder="e.g., Main Room, Function Room" required>
+                        <input type="text" name="area_name_<?php echo intval($i); ?>" value="<?php echo $area ? esc_attr($area->name) : 'Area ' . intval($i); ?>" placeholder="e.g., Main Room, Function Room" required>
                         
                         <label style="margin-top: 10px; display: block;">Description:</label>
-                        <input type="text" name="area_description_<?php echo $i; ?>" value="<?php echo $area ? esc_attr($area->description) : ''; ?>" placeholder="Brief description...">
+                        <input type="text" name="area_description_<?php echo intval($i); ?>" value="<?php echo $area ? esc_attr($area->description) : ''; ?>" placeholder="Brief description...">
                         
                         <label style="margin-top: 10px; display: block;">Capacity (optional):</label>
-                        <input type="number" name="area_capacity_<?php echo $i; ?>" value="<?php echo $area ? esc_attr($area->capacity) : ''; ?>" placeholder="e.g., 100">
+                        <input type="number" name="area_capacity_<?php echo intval($i); ?>" value="<?php echo $area ? esc_attr($area->capacity) : ''; ?>" placeholder="e.g., 100">
                     </div>
                 <?php endfor; ?>
                 
                 <div class="setup-buttons">
-                    <a href="<?php echo admin_url('admin.php?page=hbs-setup&step=2'); ?>" class="button button-skip">← Back</a>
+                    <a href="<?php echo esc_url(admin_url('admin.php?page=hbs-setup&step=2')); ?>" class="button button-skip">← Back</a>
                     <button type="submit" class="button button-primary button-next">Next: Complete →</button>
                 </div>
             </form>
@@ -265,9 +265,9 @@ class HBS_Setup_Wizard {
             </div>
             
             <div class="success-links">
-                <a href="<?php echo admin_url('admin.php?page=hbs-bookings'); ?>">→ Manage Bookings</a>
-                <a href="<?php echo admin_url('admin.php?page=hbs-settings'); ?>">→ Hall Settings</a>
-                <a href="<?php echo admin_url('edit.php?post_type=page'); ?>">→ Create Pages</a>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=hbs-bookings')); ?>">→ Manage Bookings</a>
+                <a href="<?php echo esc_url(admin_url('admin.php?page=hbs-settings')); ?>">→ Hall Settings</a>
+                <a href="<?php echo esc_url(admin_url('edit.php?post_type=page')); ?>">→ Create Pages</a>
             </div>
             
             <div class="setup-buttons" style="margin-top: 40px;">
