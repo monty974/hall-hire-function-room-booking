@@ -1,0 +1,29 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.swp
+*.swo
+
+# Composer
+vendor/
+composer.lock
+
+# Testing
+/tests/
+phpunit.xml
+.phpunit.result.cache
+
+# Logs
+*.log
+
+# Misc
+.env
+.env.local
+*.zip
+node_modules/
