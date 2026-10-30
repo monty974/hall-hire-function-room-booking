@@ -138,7 +138,7 @@ class HBS_Bookings {
         }
 
         global $wpdb;
-        $updated = $wpdb->upgmdate(
+        $updated = $wpdb->update(
             $wpdb->prefix . 'hbs_bookings',
             ['status' => 'approved'],
             ['id' => $booking_id]
@@ -167,7 +167,7 @@ class HBS_Bookings {
         }
 
         global $wpdb;
-        $updated = $wpdb->upgmdate(
+        $updated = $wpdb->update(
             $wpdb->prefix . 'hbs_bookings',
             ['status' => 'rejected'],
             ['id' => $booking_id]
@@ -746,7 +746,7 @@ class HBS_Bookings {
         }
         
         global $wpdb;
-        $updated = $wpdb->upgmdate(
+        $updated = $wpdb->update(
             $wpdb->prefix . 'hbs_areas',
             [
                 'name' => $area_name,
@@ -870,7 +870,7 @@ class HBS_Bookings {
         
         global $wpdb;
         
-        $updated = $wpdb->upgmdate(
+        $updated = $wpdb->update(
             $wpdb->prefix . 'hbs_bookings',
             [
                 'renter_name' => $renter_name,
