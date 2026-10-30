@@ -1,11 +1,11 @@
 <?php
 /**
- * Plugin Name: Hall hire and function room booking system
+ * Plugin Name: VenueHub Hall Bookings
  * Description: A flexible booking system for managing hall and function room rentals with approval workflow, recurring bookings, and email notifications
  * Version: 2026.1.2
  * Author: Nick La Galle
  * License: GPL v2 or later
- * Text Domain: hall-hire-and-function-room-booking-system
+ * Text Domain: venuehub-hall-bookings
  * Domain Path: /languages
  * 
  * BUILD VERIFICATION: 2026.0.12-FINAL

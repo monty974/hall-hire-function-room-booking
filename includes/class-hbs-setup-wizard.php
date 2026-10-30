@@ -32,7 +32,7 @@ class HBS_Setup_Wizard {
     public function render_setup_page() {
         // Check if user has admin capability
         if (!current_user_can('manage_options')) {
-            wp_die(esc_html__('You do not have permission to access this page.', 'hall-hire-function-room-booking'));
+            wp_die(esc_html__('You do not have permission to access this page.', 'venuehub-hall-bookings'));
         }
         
         ?>

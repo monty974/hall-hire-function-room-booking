@@ -1,4 +1,4 @@
-=== Hall hire and function room booking system ===
+=== VenueHub Hall Bookings ===
 Contributors: nicklagalle
 Tags: booking, calendar, hall rental, function room, scheduling
 Requires at least: 5.0
@@ -12,7 +12,7 @@ A flexible booking system for managing hall and function room rentals with appro
 
 == Description ==
 
-Hall hire and function room booking system is a comprehensive WordPress plugin for managing venue bookings. Perfect for community halls, function rooms, meeting spaces, and event venues.
+VenueHub Hall Bookings is a comprehensive WordPress plugin for managing venue bookings. Perfect for community halls, function rooms, meeting spaces, and event venues.
 
 **Key Features:**
 
@@ -37,7 +37,7 @@ Hall hire and function room booking system is a comprehensive WordPress plugin f
 
 == Installation ==
 
-1. Upload the plugin files to `/wp-content/plugins/hall-hire-and-function-room-booking-system`
+1. Upload the plugin files to `/wp-content/plugins/venuehub-hall-bookings`
 2. Activate the plugin through the 'Plugins' menu in WordPress
 3. Go to Hall Bookings → Settings to configure
 4. Create at least one bookable area

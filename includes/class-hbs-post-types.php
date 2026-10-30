@@ -5,8 +5,8 @@ class HBS_Post_Types {
 	public function register_post_types() {
 		// Hall post type
 		register_post_type( 'hbs_hall', array(
-			'label'               => __( 'Halls', 'hall-hire-function-room-booking' ),
-			'singular_name'       => __( 'Hall', 'hall-hire-function-room-booking' ),
+			'label'               => __( 'Halls', 'venuehub-hall-bookings' ),
+			'singular_name'       => __( 'Hall', 'venuehub-hall-bookings' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => true,
@@ -20,8 +20,8 @@ class HBS_Post_Types {
 
 		// Bookable area post type
 		register_post_type( 'hbs_area', array(
-			'label'               => __( 'Bookable Areas', 'hall-hire-function-room-booking' ),
-			'singular_name'       => __( 'Bookable Area', 'hall-hire-function-room-booking' ),
+			'label'               => __( 'Bookable Areas', 'venuehub-hall-bookings' ),
+			'singular_name'       => __( 'Bookable Area', 'venuehub-hall-bookings' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => 'edit.php?post_type=hbs_hall',
@@ -34,8 +34,8 @@ class HBS_Post_Types {
 
 		// Booking request post type
 		register_post_type( 'hbs_booking', array(
-			'label'               => __( 'Booking Requests', 'hall-hire-function-room-booking' ),
-			'singular_name'       => __( 'Booking Request', 'hall-hire-function-room-booking' ),
+			'label'               => __( 'Booking Requests', 'venuehub-hall-bookings' ),
+			'singular_name'       => __( 'Booking Request', 'venuehub-hall-bookings' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => 'edit.php?post_type=hbs_hall',
@@ -48,8 +48,8 @@ class HBS_Post_Types {
 
 		// Blocked period post type
 		register_post_type( 'hbs_blocked', array(
-			'label'               => __( 'Blocked Periods', 'hall-hire-function-room-booking' ),
-			'singular_name'       => __( 'Blocked Period', 'hall-hire-function-room-booking' ),
+			'label'               => __( 'Blocked Periods', 'venuehub-hall-bookings' ),
+			'singular_name'       => __( 'Blocked Period', 'venuehub-hall-bookings' ),
 			'public'              => false,
 			'show_ui'             => true,
 			'show_in_menu'        => 'edit.php?post_type=hbs_hall',
@@ -64,7 +64,7 @@ class HBS_Post_Types {
 	public function register_taxonomies() {
 		// Booking status taxonomy
 		register_taxonomy( 'hbs_booking_status', 'hbs_booking', array(
-			'label'             => __( 'Booking Status', 'hall-hire-function-room-booking' ),
+			'label'             => __( 'Booking Status', 'venuehub-hall-bookings' ),
 			'public'            => false,
 			'show_ui'           => true,
 			'hierarchical'      => false,
