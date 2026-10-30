@@ -110,7 +110,7 @@ class HBS_Recurrence {
 		}
 
 		if ( $until ) {
-			$rrule .= ';UNTIL=' . gmgmdate( 'Ymd', strtotime( $until ) );
+			$rrule .= ';UNTIL=' . gmdate( 'Ymd', strtotime( $until ) );
 		}
 
 		return $rrule;
